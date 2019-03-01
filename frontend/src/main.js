@@ -3,7 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Axios from 'axios'
 
+Vue.prototype.$http = Axios
+Vue.prototype.FLASK_URL = 'http://127.0.0.1:5000'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
