@@ -1,0 +1,12 @@
+INSERT INTO user (name,surname,age,student,group_id) VALUES ('John','Doe',23,1,0);
+INSERT INTO user (name,surname,age,student) VALUES ('Mary','Major',42,0);
+INSERT INTO user (name,surname,age,student,group_id) VALUES ('Grace','Goe',18,1,0);
+INSERT INTO user (name,surname,age,student) VALUES ('Richard','Miles',30,0);
+INSERT INTO groups (name) VALUES ('ECOWinners');
+INSERT INTO route (user_id,route_date,total_km) VALUES (0,'2019-01-01',3);
+INSERT INTO route (user_id,route_date,total_km) VALUES (1,'2019-01-01',4);
+INSERT INTO route (user_id,route_date,total_km) VALUES (2,'2019-01-01',2);
+INSERT INTO route (user_id,route_date,total_km) VALUES (3,'2019-01-01',1);
+INSERT INTO route (user_id,route_date,total_km) VALUES (0,'2019-01-02',1);
+INSERT INTO route (user_id,route_date,total_km) VALUES (1,'2019-01-02',6);
+INSERT INTO route (user_id,route_date,total_km) VALUES (2,'2019-01-02',3);
