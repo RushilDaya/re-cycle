@@ -1,8 +1,14 @@
 DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS company;
 DROP TABLE IF EXISTS route;
 
-CREATE TABLE groups (
+CREATE TABLE city (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE company (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL
 );
@@ -12,9 +18,10 @@ CREATE TABLE user (
   name TEXT NOT NULL,
   surname TEXT NOT NULL,
   age INTEGER NOT NULL,
-  student BOOLEAN NOT NULL,
-  group_id INTEGER,
-  FOREIGN KEY (group_id) REFERENCES groups (id)
+  city_id INTEGER,
+  company_id INTEGER,
+  FOREIGN KEY (city_id) REFERENCES city (id),
+  FOREIGN KEY (company_id) REFERENCES company (id)
 );
 
 CREATE TABLE route (
