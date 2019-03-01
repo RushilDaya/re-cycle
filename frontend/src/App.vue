@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <header-area> </header-area>
     <router-view/>
+    <footer-area> </footer-area>
   </div>
 </template>
 
 <script>
+import HeaderArea from '@/components/HeadAndFoot/HeaderArea'
+import FooterArea from '@/components/HeadAndFoot/FooterArea'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{HeaderArea, FooterArea}
 }
 </script>
 
@@ -16,8 +20,5 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
