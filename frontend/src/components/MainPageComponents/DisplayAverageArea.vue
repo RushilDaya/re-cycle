@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h1> You Averaged {{average}} KMs in last {{num_days}} days </h1>
+        <h5> 
+             you cycled an average of {{average}} km/day in the past {{num_days}} days
+        </h5>
     </div>
 </template>
 

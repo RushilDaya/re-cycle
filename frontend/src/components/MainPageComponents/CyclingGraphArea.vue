@@ -1,5 +1,5 @@
 <template>
-    <div style="max-width:500px">
+    <div>
         <bar-chart :chart-data="datacollection" :options="options"></bar-chart>
     </div>
 </template>
@@ -40,7 +40,7 @@ export default {
           datasets: [
             {
               label: 'Daily Cycle (KM)',
-              backgroundColor: '#f87979',
+              backgroundColor: 'rgb(80,220,100)',
               data: [7, 5, 9, 8, 8,2,1]
             }
           ]
