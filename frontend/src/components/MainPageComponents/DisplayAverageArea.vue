@@ -1,7 +1,7 @@
 <template>
     <div>
         <h5> 
-             you cycled an average of {{average}} km/day in the past {{num_days}} days
+            your daily average is {{average}} km
         </h5>
     </div>
 </template>
@@ -9,11 +9,9 @@
 <script>
 export default {
     name:'DisplayAverageArea',
+    props:['average'],
     data(){
-        return {
-            average: 10.5,
-            num_days: 7
-        }
+        return {}
     }
 }
 </script>
