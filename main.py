@@ -51,7 +51,7 @@ def get_user(user_id):
     cursor = db.cursor()
 
     cursor.execute(
-        'SELECT user.id, user.name, surname, age, budget, discount_diff, city.name, company.name, sum(route.total_km) '
+        'SELECT user.id, user.name, surname, age, budget, discount_diff, company.name, city.name, sum(route.total_km) '
         'FROM user '
         'INNER JOIN company ON user.id = company.id '
         'INNER JOIN city ON user.id = city.id '
