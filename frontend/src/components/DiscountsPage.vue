@@ -13,8 +13,11 @@
 		    <td class="right" style="vertical-align: middle;">
 		    	<strong>
 		    		<a :href="dis.url" >
-						<button  type="button" class="btn" style="font-size: 25px" > {{ dis.userdiscount.toFixed(1) }}% <div style="font-size:15px">  rate reduction</div> 
-						</button></a>
+						<button  type="button" class="btn" style="font-size: 25px">
+                             {{ (dis.tax + 0.01*dis.company_rate*dis.user_rate).toFixed(1) }}% <div style="font-size:15px">  rate reduction
+                                </div> 
+						</button>
+                    </a>
 		    	</strong>
 			</td>
 		  </tr>

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h5> 
+        <h4> 
             your daily cycling average is {{average}} km
-        </h5>
+        </h4>
     </div>
 </template>
 
