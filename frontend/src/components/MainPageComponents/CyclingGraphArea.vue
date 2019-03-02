@@ -8,10 +8,10 @@
 import BarChart from './BarChart.js';
 export default {
     name:'CyclingGraphArea',
+    props:['data'],
     components:{BarChart},
     data(){
         return{
-            datacollection: null,
             options:{
                 title:{
                     display: true,
@@ -30,22 +30,19 @@ export default {
             }
         }
     },
-    mounted(){
-     this.fillData()
-    },
-    methods:{
-      fillData () {
-        this.datacollection = {
-          labels: ['monday', 'tuesday','wednesday', 'thursday', 'friday','saturaday','sunday'],
-          datasets: [
-            {
-              label: 'Daily Cycle (KM)',
-              backgroundColor: 'rgb(80,220,100)',
-              data: [7, 5, 9, 8, 8,2,1]
-            }
-          ]
+    computed:{
+        datacollection(){
+            return {
+                        labels: this.data.dates,
+                        datasets: [
+                            {
+                            label: 'Daily Cycle (KM)',
+                            backgroundColor: 'rgb(80,220,100)',
+                            data: this.data.kms
+                            }
+                        ]
+                    }
         }
-      }
     }
 }
 </script>

@@ -6,6 +6,7 @@ import SocialPage from '@/components/SocialPage'
 import ActivityTracker from '@/components/ActivityTracker'
 import ProfilePage from '@/components/ProfilePage'
 import DiscountsPage from '@/components/DiscountsPage'
+import Help from '@/components/Help'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/discount',
       name:'DiscountsPage',
       component: DiscountsPage
+    },
+    {
+      path:'/help',
+      name:'Help',
+      component: Help
     }
   ]
 })

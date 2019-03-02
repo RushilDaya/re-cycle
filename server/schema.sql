@@ -20,7 +20,7 @@ CREATE TABLE user (
   surname TEXT NOT NULL,
   age INTEGER NOT NULL,
   budget FLOAT NOT NULL,
-  discount_diff FLOAT NOT NULL,
+  discount_percent FLOAT NOT NULL,
   city_id INTEGER NOT NULL,
   company_id INTEGER NOT NULL,
   FOREIGN KEY (city_id) REFERENCES city (id),
@@ -40,5 +40,6 @@ CREATE TABLE discount (
   name TEXT NOT NULL,
   url TEXT NOT NULL,
   img TEXT NOT NULL,
+  tax FLOAT NOT NULL,
   discount_rate FLOAT NOT NULL
 );

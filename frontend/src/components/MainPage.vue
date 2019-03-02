@@ -1,8 +1,8 @@
 <template>
-<div>
-    <discount-area class="main-block"> </discount-area>
-    <cycling-graph-area class="main-block"></cycling-graph-area>
-    <display-average-area class="main-block"></display-average-area>
+<div id="main-page">
+    <discount-area :budget="userData.budget" :cycling_score="25" class="main-block"> </discount-area>
+    <cycling-graph-area :data='cyclingHistory' class="main-block"></cycling-graph-area>
+    <display-average-area :average="averageCycle" class="main-block"></display-average-area>
 </div>
 </template>
 
@@ -16,14 +16,36 @@ export default {
     components:{DiscountArea, DisplayAverageArea, CyclingGraphArea},
     data(){
         return{
-
+            cyclingHistory:{},
+            userData:{
+                budget:0
+            }
         }
+    },
+    computed:{
+        averageCycle(){
+            return (this.userData.total_kms/7).toFixed(1) // dont assume 7 day totals
+        }
+    },
+    mounted(){
+        this.$http.get(this.FLASK_URL+'/api/user/km/'+this.LOGGED_IN_USER)
+            .then(response => {
+                this.cyclingHistory = response.data
+            })
+        this.$http.get(this.FLASK_URL+'/api/user/'+this.LOGGED_IN_USER)
+            .then(response =>{
+                this.userData = response.data
+            })
     }
 
 }
 </script>
 
 <style scoped>
+    #main-page{
+        max-width:800px;
+        margin:auto;
+    }
     .main-block{
         margin-top: 10px;
         padding:10px;

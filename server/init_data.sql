@@ -1,7 +1,7 @@
-INSERT INTO user (name,surname,age,budget,discount_diff,city_id,company_id) VALUES ('John','Doe',23,300,25,1,1);
-INSERT INTO user (name,surname,age,budget,discount_diff,city_id,company_id) VALUES ('Mary','Major',42,400,15,1,2);
-INSERT INTO user (name,surname,age,budget,discount_diff,city_id,company_id) VALUES ('Grace','Goe',18,250,10,2,1);
-INSERT INTO user (name,surname,age,budget,discount_diff,city_id,company_id) VALUES ('Richard','Miles',30,600,0,2,2);
+INSERT INTO user (name,surname,age,budget,discount_percent,city_id,company_id) VALUES ('John','Doe',23,300,25,1,1);
+INSERT INTO user (name,surname,age,budget,discount_percent,city_id,company_id) VALUES ('Mary','Major',42,400,15,1,2);
+INSERT INTO user (name,surname,age,budget,discount_percent,city_id,company_id) VALUES ('Grace','Goe',18,250,10,2,1);
+INSERT INTO user (name,surname,age,budget,discount_percent,city_id,company_id) VALUES ('Richard','Miles',30,600,0,2,2);
 
 INSERT INTO company (name) VALUES ('Tobania');
 INSERT INTO company (name) VALUES ('AFT');
@@ -38,8 +38,8 @@ INSERT INTO route (user_id,route_date,total_km) VALUES (2,'2019-01-07',4);
 INSERT INTO route (user_id,route_date,total_km) VALUES (3,'2019-01-07',3);
 INSERT INTO route (user_id,route_date,total_km) VALUES (4,'2019-01-07',2);
 
-INSERT INTO discount (name,url,img,discount_rate) VALUES ('NMBS','www.belgiantrain.be','https://seeklogo.com/images/N/NMBS_-_SNCB-logo-5E5F5EA38E-seeklogo.com.png',10);
-INSERT INTO discount (name,url,img,discount_rate) VALUES ('De Lijn','www.delijn.be','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/De_Lijn.svg/266px-De_Lijn.svg.png',12);
-INSERT INTO discount (name,url,img,discount_rate) VALUES ('UBER','www.uber.com','https://image.advance.net/home/advance-media/width460/img/newyorkupstatecom_national_desk_blog/photo/2018/03/15/uberjpg-5f9a611fad597f9c.jpg',5);
-INSERT INTO discount (name,url,img,discount_rate) VALUES ('VELO','www.velo.be','https://www.velo.be/sites/all/themes/velo/images/logo_velo_wit.png',15);
-INSERT INTO discount (name,url,img,discount_rate) VALUES ('BLABLACAR','www.blablacar.com','https://www.vostoknewventures.com/wp-content/uploads/2015/10/bla_bla_car_logo.png',7.5);
+INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('NMBS','https://www.belgiantrain.be','https://seeklogo.com/images/N/NMBS_-_SNCB-logo-5E5F5EA38E-seeklogo.com.png',10,10);
+INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('De Lijn','https://www.delijn.be','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/De_Lijn.svg/266px-De_Lijn.svg.png',15,12);
+INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('UBER','https://www.uber.com','https://image.advance.net/home/advance-media/width460/img/newyorkupstatecom_national_desk_blog/photo/2018/03/15/uberjpg-5f9a611fad597f9c.jpg',21,5);
+INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('VELO','https://www.velo.be','https://www.velo.be/sites/all/themes/velo/images/logo_velo_wit.png',15,15);
+INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('BLABLACAR','https://www.blablacar.com','https://www.vostoknewventures.com/wp-content/uploads/2015/10/bla_bla_car_logo.png',21,7.5);
