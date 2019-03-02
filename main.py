@@ -2,7 +2,9 @@ import sqlite3
 from flask import Flask, render_template, jsonify
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder="./frontend/dist/static",
+            template_folder="./frontend/dist")
 CORS(app)
 
 
@@ -42,9 +44,15 @@ class Route:
         self.km = args[1]
 
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def render_vue(path):
+    return render_template("index.html")
+
+
+#@app.route("/")
+#def hello():
+#    return "Hello World!"
 
 
 @app.route('/api/user/<int:user_id>')
@@ -72,7 +80,6 @@ def get_user(user_id):
 def get_user_routes(user_id):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
-
     cursor.execute('SELECT route_date, total_km FROM route '
                    'WHERE user_id = ?;', (user_id,))
     dates = []
