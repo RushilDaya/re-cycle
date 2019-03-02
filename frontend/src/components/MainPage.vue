@@ -1,8 +1,8 @@
 <template>
 <div>
-    <discount-area> </discount-area>
-    <display-average-area></display-average-area>
-    <cycling-graph-area></cycling-graph-area>
+    <discount-area class="main-block"> </discount-area>
+    <cycling-graph-area class="main-block"></cycling-graph-area>
+    <display-average-area class="main-block"></display-average-area>
 </div>
 </template>
 
@@ -23,6 +23,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .main-block{
+        margin-top: 10px;
+        padding:10px;
+        background-color:#fff;
+        box-shadow: #eeeeee 0px 2px 5px;
+        width:100%;
+        text-align:center;
+    }
 </style>
