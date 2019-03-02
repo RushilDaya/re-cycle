@@ -1,24 +1,23 @@
 <template>
-<div class="social">
-    <h1>Weekly Rankings</h1>
+<div id="social">
+    <div class="card-item">
+ 	    <h5 style="text-align:center"> Social rankings </h5>
+    </div>
     <div>
-        <b-card no-body>
-            <b-tabs pills card>
-                <b-tab title="Individual" active>
-                    <table class="table">
+        <b-card class="card-item" no-body>
+            <b-tabs card>
+                <b-tab  title="Individual" active>
+                    <table  class="table">
                             <thead>
-                                <tr><th>#</th><th>Name</th><th>CO2 Prevented</th></tr>
+                                <tr><th class="left">Name</th><th class="right">CO2 saved (kg)</th></tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(row,index) in users" :key="index">
-                                    <td>
-                                        {{ index +1 }}
-                                    </td>
-                                    <td>
+                                    <td class="left">
                                         {{row.name}}
                                     </td>
-                                    <td>
-                                        {{row.totalkm}}
+                                    <td class="right">
+                                        {{(0.1*row.totalkm).toFixed(2)}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -27,18 +26,15 @@
                 <b-tab title="Company">
                     <table class="table">
                             <thead>
-                                <tr><th>#</th><th>Company</th><th class>CO2 Prevented</th></tr>
+                                <tr><th class="left">Company</th><th class="right">CO2 saved (kg pp)</th></tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(row, index) in companies"  :key="index">
-                                    <td>
-                                        {{ index +1 }}
-                                    </td>
-                                    <td>
+                                    <td class="left">
                                         {{row.name}}
                                     </td>
-                                    <td>
-                                        {{row.totalkm}}
+                                    <td class="right">
+                                        {{(0.1*row.totalkm).toFixed(2)}}
                                     </td>
                                 </tr>
                         </tbody>
@@ -47,18 +43,15 @@
                 <b-tab title="City">
                     <table class="table">
                             <thead>
-                                <tr><th>#</th><th>City</th><th>CO2 Prevented</th></tr>
+                                <tr><th class="left">City</th><th class="right">CO2 saved (kg pp)</th></tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(row, index) in cities" :key="index">
-                                    <td>
-                                        {{ index +1 }}
-                                    </td>
-                                    <td>
+                                    <td class="left">
                                         {{row.name}}
                                     </td>
-                                    <td>
-                                        {{row.totalkm}}
+                                    <td class="right">
+                                        {{(0.1*row.totalkm).toFixed(2)}}
                                     </td>
                                 </tr>
                         </tbody>
@@ -107,6 +100,25 @@
     }
 </script>
 
-<style>
+<style scoped>
+.card-item{
+        margin-top: 10px;
+		margin-bottom:10px;
+        padding:10px;
+        background-color:#fff;
+        box-shadow: #eeeeee 0px 2px 5px;
+        width:100%;
+}
+#social{
+	    max-width:800px;
+        margin:auto;
+}
+    .left{
+        text-align:left;
+    }
+    .right{
+        text-align:right;
+        color:rgb(80,220,100);
+    }
 
 </style>
