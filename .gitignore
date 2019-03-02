@@ -108,3 +108,5 @@ venv.bak/
 # PyCharm styling files
 *.idea
 idea/
+
+frontend/dist/

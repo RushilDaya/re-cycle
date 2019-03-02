@@ -1,11 +1,11 @@
 import sqlite3
 from flask import Flask, render_template, jsonify
-from flask_cors import CORS
+#from flask_cors import CORS
 
 app = Flask(__name__,
-            static_folder="./frontend/dist/static",
-            template_folder="./frontend/dist")
-CORS(app)
+            static_folder="./dist/static",
+            template_folder="./dist")
+#CORS(app)
 
 
 class Ranking:
