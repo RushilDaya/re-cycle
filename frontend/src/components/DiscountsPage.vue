@@ -11,7 +11,12 @@
 		    	<img v-bind:src="dis.img" width=auto height="80" alt="">
 		    </td>
 		    <td class="right" style="vertical-align: middle;">
-		    	<strong>
+                <strong v-if="showMore.filter(e=> e.name===dis.name)[0].state">
+                    <p>
+                        {{dis.tax}}% fixed tax reduction + {{0.01*dis.company_rate*dis.user_rate}}% cycle score reduction
+                    </p>
+                </strong>
+		    	<strong v-else>
 		    		<a :href="dis.url" >
 						<button  type="button" class="btn" style="font-size: 25px">
                              {{ (dis.tax + 0.01*dis.company_rate*dis.user_rate).toFixed(1) }}% <div style="font-size:15px">  rate reduction
@@ -19,6 +24,7 @@
 						</button>
                     </a>
 		    	</strong>
+                <div> <i style ="color:rgb(80,220,100)" class="fa fa-exchange" @click='toggleState(dis.name)' /> </div>
 			</td>
 		  </tr>
 	</tbody>
@@ -38,14 +44,24 @@ export default {
     name:'DiscountsPage',
     data(){
         return{
-        	discount:[]
+            discount:[],
+            showMore:[]
         }
     },
     mounted(){
         this.$http.get(this.FLASK_URL+'/api/discount/'+this.LOGGED_IN_USER)
             .then(response => {
-                this.discount = response.data
+                this.discount = response.data;
+                this.showMore = this.discount.map(e => e.name).map(e  =>({ name:e,state:false}))
             })        
+    },
+    methods:{
+        toggleState(name){
+            console.log(name)
+            var index = this.showMore.map(e => e.name).indexOf(name)
+            console.log(index)
+            this.showMore[index].state = !this.showMore[index].state
+        }
     }
 
 
