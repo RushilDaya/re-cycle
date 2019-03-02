@@ -2,8 +2,7 @@ import sqlite3
 from flask import Flask, render_template, jsonify
 #from flask_cors import CORS
 
-app = Flask(__name__,
-            template_folder="dist")
+app = Flask(__name__)
 #CORS(app)
 
 
@@ -43,15 +42,15 @@ class Route:
         self.km = args[1]
 
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def render_vue(path):
-    return render_template("index.html")
+#@app.route('/', defaults={'path': ''})
+#@app.route('/<path:path>')
+#def render_vue(path):
+#    return render_template("index.html")
 
 
-#@app.route("/")
-#def hello():
-#    return "Hello World!"
+@app.route("/")
+def hello():
+    return "Hello World!"
 
 
 @app.route('/api/user/<int:user_id>')
