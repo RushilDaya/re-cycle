@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h5> you have <i id="amount">{{points}}</i> points 
+        <h5> you have <i id="amount">{{budget}}</i> points 
             <button  type="button" class="btn" @click="goDiscountScreen()"> spend <i 	class="fa fa-arrow-circle-right" /> </button>
         </h5>
     </div>
@@ -9,10 +9,9 @@
 <script>
 export default {
     name:'DiscountArea',
+    props:['budget'],
     data(){
-        return{
-            points: 50
-        }
+        return{}
     },
     methods:{
         goDiscountScreen(){
