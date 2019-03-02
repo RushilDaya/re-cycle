@@ -1,6 +1,6 @@
 <template>
 <div id="main-page">
-    <discount-area :budget="userData.budget" class="main-block"> </discount-area>
+    <discount-area :budget="userData.budget" :cycling_score="25" class="main-block"> </discount-area>
     <cycling-graph-area :data='cyclingHistory' class="main-block"></cycling-graph-area>
     <display-average-area :average="averageCycle" class="main-block"></display-average-area>
 </div>
@@ -17,7 +17,9 @@ export default {
     data(){
         return{
             cyclingHistory:{},
-            userData:{}
+            userData:{
+                budget:0
+            }
         }
     },
     computed:{
