@@ -10,21 +10,23 @@
 		    <td class="left">
 		    	<img v-bind:src="dis.img" width=auto height="80" alt="">
 		    </td>
-		    <td class="right" style="vertical-align: middle;">
-                <strong v-if="showMore.filter(e=> e.name===dis.name)[0].state">
-                    <p>
-                        {{dis.tax}}% fixed tax reduction + {{0.01*dis.company_rate*dis.user_rate}}% cycle score reduction
-                    </p>
-                </strong>
-		    	<strong v-else>
-		    		<a :href="dis.url" >
-						<button  type="button" class="btn" style="font-size: 25px">
-                             {{ (dis.tax + 0.01*dis.company_rate*dis.user_rate).toFixed(1) }}% <div style="font-size:15px">  rate reduction
-                                </div> 
-						</button>
-                    </a>
-		    	</strong>
-                <div> <i style ="color:rgb(80,220,100)" class="fa fa-exchange" @click='toggleState(dis.name)' /> </div>
+		    <td class="right d-flex flex-row-reverse bd-highlight" style="vertical-align: middle;">
+                <div> <i style ="color:rgb(80,220,100); margin-left:8px" class="fa fa-question-circle" @click='toggleState(dis.name)' /> </div>
+                <div>
+                    <strong v-if="showMore.filter(e=> e.name===dis.name)[0].state">
+                        <p style="font-size:12px; max-width:120px; font-weight:normal">
+                            <b>{{dis.tax}}% </b> fixed tax reduction + <b>{{(0.01*dis.company_rate*dis.user_rate).toFixed(1)}}% </b> cycle score reduction
+                        </p>
+                    </strong>
+                    <strong v-else>
+                        <a :href="dis.url" >
+                            <button  type="button" class="btn" style="font-size: 25px">
+                                {{ (dis.tax + 0.01*dis.company_rate*dis.user_rate).toFixed(1) }}% <div style="font-size:15px">  rate reduction
+                                    </div> 
+                            </button>
+                        </a>
+                    </strong>
+                </div>
 			</td>
 		  </tr>
 	</tbody>
