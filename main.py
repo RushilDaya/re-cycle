@@ -1,9 +1,7 @@
 import sqlite3
 from flask import Flask, render_template, jsonify
-#from flask_cors import CORS
 
 app = Flask(__name__)
-#CORS(app)
 
 
 class Ranking:
@@ -48,8 +46,9 @@ class Route:
 #    return render_template("index.html")
 
 
-@app.route("/")
-def hello():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def hello(path):
     return render_template("index.html")
 
 
