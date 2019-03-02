@@ -2,12 +2,12 @@
     <div>
             <table style="width:100%">
                 <tr>
-                    <td class="left">Credits <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
+                    <td class="left" style="font-size:15px">Credits <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
                     <td class="right"> &euro; {{budget.toFixed(2)}}</td>
                 </tr>
                 <tr>
-                    <td class="left">Cycling Score <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
-                    <td class="right">{{cycling_score}}</td>
+                    <td class="left" style="font-size:15px">Cycling Score <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
+                    <td class="right"> {{cycling_score}} </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -56,6 +56,6 @@ export default {
         color:rgb(80,220,100);
     }
     tr{
-        font-size:25px;
+        font-size:20px;
     }
 </style>
