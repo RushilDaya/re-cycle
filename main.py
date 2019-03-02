@@ -1,15 +1,15 @@
 import sqlite3
 from flask import Flask, render_template, jsonify
 
-
 app = Flask(__name__)
 
 
 class Ranking:
-	def __init__(self,args):
-		self.id = args[0]
-		self.name = args[1]
-		self.totalkm = args[2]
+    def __init__(self, args):
+        self.id = args[0]
+        self.name = args[1]
+        self.totalkm = args[2]
+
 
 class Discount:
     def __init__(self, args):
@@ -48,13 +48,14 @@ def get_user(user_id):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
 
-    cursor.execute('SELECT user.id, user.name, surname, age, budget, discount_diff, city.name, company.name, sum(route.total_km) '
-                   'FROM user '
-                   'INNER JOIN company ON user.id = company.id '
-                   'INNER JOIN city ON user.id = city.id '
-                   'INNER JOIN route ON user.id = route.user_id '
-                   'WHERE user.id = ? '
-                   'GROUP BY user.id;', (user_id,))
+    cursor.execute(
+        'SELECT user.id, user.name, surname, age, budget, discount_diff, city.name, company.name, sum(route.total_km) '
+        'FROM user '
+        'INNER JOIN company ON user.id = company.id '
+        'INNER JOIN city ON user.id = city.id '
+        'INNER JOIN route ON user.id = route.user_id '
+        'WHERE user.id = ? '
+        'GROUP BY user.id;', (user_id,))
 
     obj_user = User(cursor.fetchone())
     json_out = jsonify(obj_user.__dict__)
@@ -92,34 +93,54 @@ def city(id):
     return json_out
 
 
-
 @app.route('/api/topfive/<request_type>')
 def topfive(request_type):
-	json_out=[]
-	db = sqlite3.connect('database.db')
-	cursor = db.cursor()
-	if (request_type=='users'):
-		sql_txt = 'SELECT user.id, (user.name || " " || user.surname) AS name, sum(total_km) as total FROM user LEFT JOIN route ON user.id = user_id GROUP BY user.id ORDER BY total DESC LIMIT 5;'
-	elif (request_type=='cities'):
-		sql_txt = 'SELECT city.id, city.name, sum(total_km) as total FROM user JOIN city ON user.city_id=city.id LEFT JOIN route ON user.id = user_id GROUP BY user.city_id ORDER BY total DESC LIMIT 5;'
-	elif (request_type=='companies'):
-		sql_txt = 'SELECT company.id, company.name, sum(total_km) as total FROM user JOIN company ON user.company_id=company.id LEFT JOIN route ON user.id = user_id GROUP BY user.company_id ORDER BY total DESC LIMIT 5;'
+    json_out = []
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
 
-	cursor.execute(sql_txt)
-	for row in cursor.fetchall():
-		objRank = Ranking(row)
-		json_out.append(objRank.__dict__)
-	db.close()
-	return jsonify(json_out)
+    if request_type == 'users':
+        sql_txt = 'SELECT user.id, (user.name || " " || user.surname) AS name, sum(total_km) as total ' \
+                  'FROM user ' \
+                  'LEFT JOIN route ON user.id = user_id ' \
+                  'GROUP BY user.id ' \
+                  'ORDER BY total ' \
+                  'DESC LIMIT 5;'
+    elif request_type == 'cities':
+        sql_txt = 'SELECT city.id, city.name, sum(total_km) as total ' \
+                  'FROM user JOIN city ON user.city_id=city.id ' \
+                  'LEFT JOIN route ON user.id = user_id ' \
+                  'GROUP BY user.city_id ' \
+                  'ORDER BY total ' \
+                  'DESC LIMIT 5;'
+    elif request_type == 'companies':
+        sql_txt = 'SELECT company.id, company.name, sum(total_km) as total ' \
+                  'FROM user JOIN company ON user.company_id=company.id ' \
+                  'LEFT JOIN route ON user.id = user_id ' \
+                  'GROUP BY user.company_id ' \
+                  'ORDER BY total ' \
+                  'DESC LIMIT 5;'
+
+    cursor.execute(sql_txt)
+    for row in cursor.fetchall():
+        objRank = Ranking(row)
+        json_out.append(objRank.__dict__)
+    db.close()
+    return jsonify(json_out)
+
 
 @app.route('/api/discount/<int:id>')
 def discount(id):
-	json_out=[]
-	db = sqlite3.connect('database.db')
-	cursor = db.cursor()
-	cursor.execute('SELECT discount.name, url, img, (21 + (discount_rate * discount_diff)/100) FROM user JOIN discount WHERE user.id = ?;',(id,))
-	for row in cursor.fetchall():
-		objDiscount = Discount(row)
-		json_out.append(objDiscount.__dict__)
-	db.close()
-	return jsonify(json_out)
+    json_out = []
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute(
+        'SELECT discount.name, url, img, (21 + (discount_rate * discount_diff)/100) '
+        'FROM user JOIN discount '
+        'WHERE user.id = ?;',
+        (id,))
+    for row in cursor.fetchall():
+        objDiscount = Discount(row)
+        json_out.append(objDiscount.__dict__)
+    db.close()
+    return jsonify(json_out)
