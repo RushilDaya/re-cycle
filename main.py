@@ -40,12 +40,6 @@ class Route:
         self.km = args[1]
 
 
-#@app.route('/', defaults={'path': ''})
-#@app.route('/<path:path>')
-#def render_vue(path):
-#    return render_template("index.html")
-
-
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def hello(path):
