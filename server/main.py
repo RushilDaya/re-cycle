@@ -18,7 +18,9 @@ class Discount:
         self.name = args[0]
         self.url = args[1]
         self.img = args[2]
-        self.userdiscount = args[3]
+        self.tax = args[3]
+        self.company_rate = args[4]
+        self.user_rate = args[5]
 
 
 class User:
@@ -51,7 +53,7 @@ def get_user(user_id):
     cursor = db.cursor()
 
     cursor.execute(
-        'SELECT user.id, user.name, surname, age, budget, discount_diff, company.name, city.name, sum(route.total_km) '
+        'SELECT user.id, user.name, surname, age, budget, discount_percent, company.name, city.name, sum(route.total_km) '
         'FROM user '
         'INNER JOIN company ON user.id = company.id '
         'INNER JOIN city ON user.id = city.id '
@@ -137,9 +139,9 @@ def discount(id):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     cursor.execute(
-        'SELECT discount.name, url, img, (21 + (discount_rate * discount_diff)/100) '
-        'FROM user JOIN discount '
-        'WHERE user.id = ?;',
+        'SELECT discount.name, url, img, tax, discount_rate, discount_percent ' \
+        'FROM user JOIN discount ' \
+        'WHERE user.id = ?;', \
         (id,))
     for row in cursor.fetchall():
         objDiscount = Discount(row)
