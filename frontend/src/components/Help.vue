@@ -17,7 +17,7 @@
             </h3>
             <hr>
             <p>
-                Your cycling score is based on the average distance you cycle in a week. This score is used to generate
+                Your cycling score is based on the average distance you cycle in the year. This score is used to generate
                 further reduce the cost of travel tickets you purchase through any of our partner companies
             </p>
         </div>
