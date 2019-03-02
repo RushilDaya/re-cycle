@@ -1,22 +1,20 @@
 <template>
-<div style="background-color:#FFFFFF;">
+<div id="discounts-page">
 <center>
+<div class="card-item">
+ 	<h5>	Purchase  </h5>
+</div>
 <table style="width:100%" class="table">
-	<thead class="thead-dark">
-		<th scope="col"></th>
-      	<th scope="col"> <center> Discount </center>
-		</th>
-    </thead>
  	<tbody>
-		  <tr v-for="dis in discount">
-		    <td>
-		    	<center>
+		  <tr v-for="dis in discount" class="card-item">
+		    <td class="left">
 		    	<img v-bind:src="dis.img" width=auto height="80" alt="">
-		    	</center>
 		    </td>
-		    <td style="text-align: center; vertical-align: middle;">
+		    <td class="right" style="vertical-align: middle;">
 		    	<strong>
-		    		<a :href="dis.url" style="font-size: 20px; color: green" ><center> {{ dis.userdiscount }}% </center> </a>
+		    		<a :href="dis.url" >
+						<button  type="button" class="btn" style="font-size: 25px" > {{ dis.userdiscount.toFixed(1) }}% <div style="font-size:15px">  rate reduction</div> 
+						</button></a>
 		    	</strong>
 			</td>
 		  </tr>
@@ -54,19 +52,32 @@ export default {
 
 
 
-<style>
-
-
-.gap-10 {
-				width:100%;
-				height:10px;
-			}
-
-.button1 {
-		  width:100%;
-		  background-color: white;
-		  color: black;
-		  border: 4px solid #4CAF50; /* Green */
+<style scoped>
+#discounts-page{
+	    max-width:800px;
+        margin:auto;
 }
+.card-item{
+        margin-top: 10px;
+		margin-bottom:10px;
+        padding:10px;
+        background-color:#fff;
+        box-shadow: #eeeeee 0px 2px 5px;
+        width:100%;
+}
+
+.left{
+	padding-left:30px;
+}
+.right{
+	text-align:right;
+	padding-right:30px;
+}
+
+    .btn{
+        margin-left:30px;
+        background-color:rgb(80,220,100);
+        color:white;
+    }
 
 </style>
