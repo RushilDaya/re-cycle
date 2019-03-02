@@ -2,7 +2,7 @@
   <div id="app">
     <header-area> </header-area>
     <router-view/>
-    <footer-area> </footer-area>
+    <footer-area class="footer"> </footer-area>
   </div>
 </template>
 
@@ -20,5 +20,16 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-bottom: 40px;
 }
+
+.footer {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: inline-block;
+}
+
 </style>
