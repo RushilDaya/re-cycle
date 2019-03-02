@@ -4,7 +4,7 @@ import MainPage from '@/components/MainPage'
 import InformationPage from '@/components/InformationPage'
 import SocialPage from '@/components/SocialPage'
 import ActivityTracker from '@/components/ActivityTracker'
-
+import ProfilePage from '@/components/ProfilePage'
 
 Vue.use(Router)
 
@@ -29,6 +29,11 @@ export default new Router({
       path: '/activity',
       name:'ActivityTracker',
       component:ActivityTracker
+    },
+    {
+      path: '/profile',
+      name: 'ProfilePage',
+      component: ProfilePage
     }
   ]
 })

@@ -32,9 +32,7 @@
 export default {
     name:'HeaderArea',
     data(){
-        return{
-
-        }
+        return{}
     },
     methods:{
         goMainScreen(){
