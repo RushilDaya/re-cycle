@@ -292,7 +292,7 @@ INSERT INTO route (user_id,route_date,total_km) VALUES (8,'2019-01-29',4);
 
 -- COMPANIES DISCOUNTS
 INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('NMBS','https://www.belgiantrain.be','https://seeklogo.com/images/N/NMBS_-_SNCB-logo-5E5F5EA38E-seeklogo.com.png',10,10);
-INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('De Lijn','www.delijn.be','https://seeklogo.com/images/D/De_Lijn-logo-B96D76AE28-seeklogo.com.png',15,12);
+INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('De Lijn','https://www.delijn.be','https://seeklogo.com/images/D/De_Lijn-logo-B96D76AE28-seeklogo.com.png',15,12);
 INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('UBER','https://www.uber.com','https://seeklogo.com/images/U/uber-logo-2BB8EC4342-seeklogo.com.png',21,5);
 INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('VELO','https://www.velo.be','https://www.velo.be/sites/all/themes/velo/images/logo_velo_wit.png',15,15);
 INSERT INTO discount (name,url,img,tax,discount_rate) VALUES ('BLABLACAR','https://www.blablacar.com','https://www.vostoknewventures.com/wp-content/uploads/2015/10/bla_bla_car_logo.png',21,7.5);
