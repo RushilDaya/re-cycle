@@ -30,6 +30,7 @@ class User:
         self.discount_diff = args[5]
         self.company = args[6]
         self.city = args[7]
+        self.total_kms = args[8]
 
 
 class Route:
@@ -43,13 +44,22 @@ def hello():
     return "Hello World!"
 
 
-@app.route('/api/user/<int:id>')
+@app.route('/api/user/<int:user_id>')
 def get_user(user_id):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
-    cursor.execute('SELECT * FROM user WHERE id = ?;', (user_id,))
-    objUser = User(cursor.fetchone())
-    json_out = jsonify(objUser.__dict__)
+
+    cursor.execute('SELECT user.id, user.name, surname, age, budget, discount_diff, city.name, company.name, sum(route.total_km) '
+                   'FROM user '
+                   'INNER JOIN company ON user.id = company.id '
+                   'INNER JOIN city ON user.id = city.id '
+                   'INNER JOIN route ON user.id = route.user_id '
+                   'WHERE user.id = ? '
+                   'GROUP BY user.id;', (user_id,))
+
+    obj_user = User(cursor.fetchone())
+    json_out = jsonify(obj_user.__dict__)
+
     db.close()
     return json_out
 
@@ -58,13 +68,16 @@ def get_user(user_id):
 def get_user_routes(user_id):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
+
     cursor.execute('SELECT route_date, total_km FROM route '
                    'WHERE user_id = ?;', (user_id,))
     dates = []
     kms = []
+
     for row in cursor.fetchall():
         dates.append(row[0])
         kms.append(row[1])
+
     db.close()
     return jsonify({'dates': dates, 'kms': kms})
 
