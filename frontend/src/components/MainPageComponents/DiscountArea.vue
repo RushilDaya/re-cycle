@@ -2,11 +2,11 @@
     <div>
             <table style="width:100%">
                 <tr>
-                    <td class="left" style="font-size:15px">Credits <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
-                    <td class="right"> &euro; {{budget.toFixed(2)}}</td>
+                    <td @mousedown="goHelp()" class="left" style="font-size:15px">Credits <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
+                    <td class="right"> &euro; {{budget}}</td>
                 </tr>
                 <tr>
-                    <td class="left" style="font-size:15px">Cycling Score <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
+                    <td @mousedown="goHelp()" class="left" style="font-size:15px">Cycling Score <i class="fa fa-question-circle" style="color:rgb(80,220,100)"/> </td>
                     <td class="right"> {{cycling_score}} </td>
                 </tr>
                 <tr>
@@ -33,6 +33,9 @@ export default {
     methods:{
         goDiscountScreen(){
             this.$router.push('/discount')
+        },
+        goHelp(){
+            this.$router.push('/help')
         }
     }
 }

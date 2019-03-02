@@ -17,7 +17,9 @@ export default {
     data(){
         return{
             cyclingHistory:{},
-            userData:{}
+            userData:{
+                budget:0
+            }
         }
     },
     computed:{
