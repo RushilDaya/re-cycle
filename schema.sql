@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS city;
 DROP TABLE IF EXISTS company;
 DROP TABLE IF EXISTS route;
+DROP TABLE IF EXISTS discount;
 
 CREATE TABLE city (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,8 +19,10 @@ CREATE TABLE user (
   name TEXT NOT NULL,
   surname TEXT NOT NULL,
   age INTEGER NOT NULL,
-  city_id INTEGER,
-  company_id INTEGER,
+  budget FLOAT NOT NULL,
+  discount_diff FLOAT NOT NULL,
+  city_id INTEGER NOT NULL,
+  company_id INTEGER NOT NULL,
   FOREIGN KEY (city_id) REFERENCES city (id),
   FOREIGN KEY (company_id) REFERENCES company (id)
 );
@@ -30,4 +33,12 @@ CREATE TABLE route (
   route_date DATE NOT NULL DEFAULT CURRENT_DATE,
   total_km FLOAT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user (id)
+);
+
+CREATE TABLE discount (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  img TEXT NOT NULL,
+  discount_rate FLOAT NOT NULL
 );
