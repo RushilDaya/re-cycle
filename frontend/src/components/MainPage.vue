@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="main-page">
     <discount-area :budget="userData.budget" class="main-block"> </discount-area>
     <cycling-graph-area :data='cyclingHistory' class="main-block"></cycling-graph-area>
     <display-average-area :average="averageCycle" class="main-block"></display-average-area>
@@ -40,6 +40,10 @@ export default {
 </script>
 
 <style scoped>
+    #main-page{
+        max-width:800px;
+        margin:auto;
+    }
     .main-block{
         margin-top: 10px;
         padding:10px;
