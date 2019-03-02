@@ -4,13 +4,13 @@
     <div>
         <b-card no-body>
             <b-tabs pills card>
-                <b-tab title="Individual Rankings" active>
+                <b-tab title="Individual" active>
                     <table class="table table-hover">
                             <thead>
-                                <tr><th>#</th><th>Name</th><th>CO2 Emission Prevented</th><th>Company</th><th>City</th></tr>
+                                <tr><th>#</th><th>Name</th><th>CO2 Prevented</th><th>Company</th><th>City</th></tr>
                             </thead>
-                            <tbody v-sortable.tr="rows">
-                                <tr v-for="(row,index) in rows">
+                            <tbody>
+                                <tr v-for="(row,index) in rows" :key="index">
                                     <td>
                                         {{ index +1 }}
                                     </td>
@@ -30,13 +30,13 @@
                             </tbody>
                         </table>
                 </b-tab>
-                <b-tab title="Company Rankings">
+                <b-tab title="Company">
                     <table class="table table-hover">
                             <thead>
-                                <tr><th>#</th><th>Company</th><th>CO2 Emission Prevented</th><th>City</th></tr>
+                                <tr><th>#</th><th>Company</th><th class>CO2 Prevented</th><th>City</th></tr>
                             </thead>
-                            <tbody v-sortable.tr="rows">
-                                <tr v-for="(row, index) in rows">
+                            <tbody>
+                                <tr v-for="(row, index) in rows"  :key="index">
                                     <td>
                                         {{ index +1 }}
                                     </td>
@@ -53,13 +53,13 @@
                         </tbody>
                     </table>
                 </b-tab>
-                <b-tab title="City Rankings">
+                <b-tab title="City">
                     <table class="table table-hover">
                             <thead>
-                                <tr><th>#</th><th>City</th><th>CO2 Emission Prevented</th></tr>
+                                <tr><th>#</th><th>City</th><th>CO2 Prevented</th></tr>
                             </thead>
-                            <tbody v-sortable.tr="rows">
-                                <tr v-for="(row, index) in rows">
+                            <tbody>
+                                <tr v-for="(row, index) in rows" :key="index">
                                     <td>
                                         {{ index +1 }}
                                     </td>
@@ -115,7 +115,7 @@ h1 {
   display: grid;
   grid-template-rows: auto;
   justify-items: center;
-  align-items: 50px;
+  align-items: 100%;
 }
 </style>
 <!--<li v-for="(name, co2, city) in item":key="index">{{name.item, co2.item, city.item}}
