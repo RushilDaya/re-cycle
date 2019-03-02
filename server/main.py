@@ -111,14 +111,14 @@ def topfive(request_type):
                   'ORDER BY total ' \
                   'DESC LIMIT 5;'
     elif request_type == 'cities':
-        sql_txt = 'SELECT city.id, city.name, sum(total_km) as total ' \
+        sql_txt = 'SELECT city.id, city.name, /COUNT(DISTINCT user.id) as avg ' \
                   'FROM user JOIN city ON user.city_id=city.id ' \
                   'LEFT JOIN route ON user.id = user_id ' \
                   'GROUP BY user.city_id ' \
                   'ORDER BY total ' \
                   'DESC LIMIT 5;'
     elif request_type == 'companies':
-        sql_txt = 'SELECT company.id, company.name, sum(total_km) as total ' \
+        sql_txt = 'SELECT company.id, company.name, sum(total_km)/COUNT(DISTINCT user.id) as avg ' \
                   'FROM user JOIN company ON user.company_id=company.id ' \
                   'LEFT JOIN route ON user.id = user_id ' \
                   'GROUP BY user.company_id ' \
