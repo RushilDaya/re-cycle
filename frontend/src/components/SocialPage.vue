@@ -10,7 +10,7 @@
                                 <tr><th>#</th><th>Name</th><th>CO2 Prevented</th></tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(row,index) in rows" :key="index">
+                                <tr v-for="(row,index) in users" :key="index">
                                     <td>
                                         {{ index +1 }}
                                     </td>
@@ -18,7 +18,7 @@
                                         {{row.name}}
                                     </td>
                                     <td>
-                                        {{row.co2}}
+                                        {{row.totalkm}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -30,15 +30,15 @@
                                 <tr><th>#</th><th>Company</th><th class>CO2 Prevented</th></tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(row, index) in rows"  :key="index">
+                                <tr v-for="(row, index) in companies"  :key="index">
                                     <td>
                                         {{ index +1 }}
                                     </td>
                                     <td>
-                                        {{row.company}}
+                                        {{row.name}}
                                     </td>
                                     <td>
-                                        {{row.co2}}
+                                        {{row.totalkm}}
                                     </td>
                                 </tr>
                         </tbody>
@@ -50,15 +50,15 @@
                                 <tr><th>#</th><th>City</th><th>CO2 Prevented</th></tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(row, index) in rows" :key="index">
+                                <tr v-for="(row, index) in cities" :key="index">
                                     <td>
                                         {{ index +1 }}
                                     </td>
                                     <td>
-                                        {{row.city}}
+                                        {{row.name}}
                                     </td>
                                     <td>
-                                        {{row.co2}}
+                                        {{row.totalkm}}
                                     </td>
                                 </tr>
                         </tbody>
@@ -77,23 +77,32 @@
     
     data() {
         return {
-            rows: []
-                }
+            users:[],
+            cities:[],
+            companies:[]
+        }
     },
-    mounted() {
-        var rows = [
-                { name: "Murilo Cunha", co2: 100000, company: 'Brazil', city: "Sao Paulo" },
-                { name: "Rushil Daya", co2: 10000, company: 'Mothaland', city: "Johaa" },
-                { name: "Massi Picano", co2: 1000000, company: 'Cataluna', city: "Barcelona" },
-                { name: "Nachito", co2: 100, company: 'The enemy', city: "Merengue" },
-                { name: "Mr. Rocketo", co2: 10, company: 'Cern', city: "Hydron Colider" },
-                ];
-
-                // Sorting, STILL NEED TO INTEGRATE WITH FLASK
-        this.rows.sort(function(a,b) {
-            return parseFloat(a.co2) - parseFloat(b.co2);
-        });
-        this.rows
+    mounted(){
+            this.$http.get(this.FLASK_URL+'/api/topfive/users')
+            .then(response => {
+                this.users = this.mySort(response.data)
+            })
+            this.$http.get(this.FLASK_URL+'/api/topfive/cities')
+            .then(response => {
+                this.cities = this.mySort(response.data)
+            })
+            this.$http.get(this.FLASK_URL+'/api/topfive/companies')
+            .then(response => {
+                this.companies = this.mySort(response.data)
+            })
+    },
+    methods:{
+        mySort(myArray){
+            console.log(myArray)
+            return myArray.sort(function(a,b) {
+                return b.totalkm - a.totalkm
+            })
+        }
     }
     }
 </script>
