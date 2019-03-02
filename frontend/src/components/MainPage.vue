@@ -1,6 +1,6 @@
 <template>
 <div id="main-page">
-    <discount-area :budget="userData.budget" :cycling_score="25" class="main-block"> </discount-area>
+    <discount-area :budget="userData.budget" :cycling_score="userData.discount_diff" class="main-block"> </discount-area>
     <cycling-graph-area :data='cyclingHistory' class="main-block"></cycling-graph-area>
     <display-average-area :average="averageCycle" class="main-block"></display-average-area>
 </div>
@@ -24,7 +24,13 @@ export default {
     },
     computed:{
         averageCycle(){
-            return (this.userData.total_kms/7).toFixed(1) // dont assume 7 day totals
+            try{
+                var a = (this.userData.total_kms/this.cyclingHistory.kms.length).toFixed(1)
+                return a
+            }
+            catch(err){
+                return 0
+            }
         }
     },
     mounted(){
