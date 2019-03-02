@@ -12,6 +12,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.use(BootstrapVue);
 Vue.prototype.$http = Axios
 Vue.prototype.FLASK_URL = 'http://127.0.0.1:5000'
+Vue.prototype.LOGGED_IN_USER = 1
 Vue.config.productionTip = false
 
 
